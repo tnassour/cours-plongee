@@ -1,0 +1,139 @@
+\section{Rappels Partie 1}
+
+% --- FRAME 1 : RAPPELS RÉGLEMENTATION & PHYSIQUE ---
+\begin{frame}{Rappels : Cadre et Principes}
+    Avant d'aborder la suite, rappelons les fondamentaux du Niveau 3 :
+
+    \begin{columns}
+        \column{0.5\textwidth}
+        \begin{block}{Prérogatives N3}
+            \begin{itemize}
+                \item \textbf{PA60} : Autonome jusqu'à 60m (avec DP).
+                \item \textbf{PA40} : Autonome jusqu'à 40m (sans DP).
+                \item \textbf{Responsable} de sa planification et de sa sécurité.
+            \end{itemize}
+        \end{block}
+
+        \column{0.4\textwidth}
+        \begin{block}{Physique (Loi de Mariotte)}
+            $$ P \times V = \text{Constante} $$
+            La pression augmente de \textbf{1 bar tous les 10m}.
+            \begin{itemize}
+                \item À 20m ($P_{abs}=3b$) : Consommation $\times 3$.
+                \item Autonomie divisée par 3 !
+            \end{itemize}
+        \end{block}
+    \end{columns}
+    
+    \vspace{0.5cm}
+    \textbf{Règle d'or en autonomie :} On planifie \textbf{avant} de s'immerger (Air, Temps, Profondeur, Palanquée).
+\end{frame}
+
+% --- FRAME 2 : RAPPELS RISQUES ---
+\begin{frame}{Rappels : Les Risques Majeurs}
+    \begin{alertblock}{Barotraumatismes (Volumes gaz du corps)}
+        \textbf{Cause :} Variation de pression (surtout 0-10m).
+        \begin{itemize}
+            \item \textbf{Surpression Pulmonaire ($\nearrow$)} : Expiration continue obligatoire.
+            \item \textbf{Oreilles ($\searrow$)} : Manœuvres douces, ne jamais forcer.
+        \end{itemize}
+    \end{alertblock}
+
+    \begin{block}{Accident de Désaturation (ADD - Loi de Henry)}
+        \textbf{Cause :} Bulles d'azote bloquant la circulation.
+        \begin{itemize}
+            \item \textbf{Facteurs favorisants} : Profil, Froid, Effort, Age.
+            \item \textbf{Prévention} : Respect vitesse remontée, hydratation, pas d'effort après.
+            \item \textbf{CAT} : O2 (15L/min) + Évacuation + Eau.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+% --- FRAME 3 : EXERCICE AVANCÉ ---
+\begin{frame}{Exercice de Planification (Niveau N3)}
+    \textbf{Scénario :}
+    Plongée sur une épave à \textbf{30 mètres}.
+    \begin{itemize}
+        \item Bloc de \textbf{15 Litres} gonflé à \textbf{210 bars}.
+        \item Consommation surface (stress inclus) : \textbf{25 L/min}.
+        \item Réserve de sécurité obligatoire : \textbf{50 bars}.
+    \end{itemize}
+
+    \vspace{0.3cm}
+    \textbf{Calculez votre autonomie au fond selon 3 méthodes :}
+    \begin{enumerate}
+        \item \textbf{Méthode "Naïve"} : On consomme tout le gaz utilisable au fond (sans penser à la remontée).
+        \item \textbf{Méthode "Réaliste"} : On déduit le gaz nécessaire à la remontée (DTR).
+        \textit{\small(Pour l'exercice, on estime la consommation de la remontée à \textbf{400 Litres}).}
+        \item \textbf{Méthode "Sécurisée"} : On applique la \textbf{Règle des Tiers}.
+    \end{enumerate}
+\end{frame}
+
+% --- FRAME 4 : SOLUTION ---
+% --- SOLUTION PARTIE 1 : SIMPLIFIÉE ---
+\begin{frame}{Solution 1 : Méthode "Naïve"}
+    \textit{"Je reste au fond tant que je n'ai pas atteint ma réserve."}
+    
+    \begin{enumerate}
+        \item \textbf{Calcul de la Conso Fond ($C_{fond}$)} :
+        $$ P_{abs} = 4 \text{ bars} \quad \Rightarrow \quad C_{fond} = 25 \times 4 = \mathbf{100 \text{ L/min}} $$
+        
+        \item \textbf{Gaz Utilisable :}
+        $$ 210b - 50b (\text{Réserve}) = 160b $$
+        $$ 160b \times 15L = \mathbf{2400 \text{ Litres}} $$
+        
+        \item \textbf{Autonomie :}
+        $$ \text{Temps} = \frac{2400}{100} = \mathbf{24 \text{ minutes}} $$
+    \end{enumerate}
+    
+    \begin{alertblock}{Danger}
+        Si vous restez 24 min, vous entamez la remontée avec 50 bars.
+        Vous arriverez en surface \textbf{dans la réserve} (car vous allez consommer en remontant). \textbf{C'est risqué.}
+    \end{alertblock}
+\end{frame}
+
+% --- SOLUTION PARTIE 2 : AVEC DTR ---
+\begin{frame}{Solution 2 : Intégration de la DTR}
+    \textit{"Je garde du gaz pour remonter sereinement."}
+    
+    \begin{itemize}
+        \item \textbf{Gaz Utilisable Total} : 2400 Litres (cf. calcul précédent).
+        \item \textbf{Besoin Remontée (DTR)} : 400 Litres (Donnée exercice).
+    \end{itemize}
+    
+    $$ \text{Gaz Dispo Fond} = 2400 - 400 = \mathbf{2000 \text{ Litres}} $$
+    
+    \textbf{Nouvelle Autonomie :}
+    $$ \frac{2000}{100} = \mathbf{20 \text{ minutes}} $$
+    
+    \begin{block}{Constat}
+        On perd 4 minutes de temps fond, mais on sort de l'eau avec la réserve intacte (50b). C'est la procédure standard minimale.
+    \end{block}
+\end{frame}
+
+% --- SOLUTION PARTIE 3 : TIERS ---
+\begin{frame}{Solution 3 : La Règle des Tiers}
+    \textit{"Je consomme 1/3 à l'aller, 1/3 au retour, 1/3 sécurité."}
+    \begin{columns}
+        \column{0.4\textwidth}
+        \begin{enumerate}
+            \item \textbf{Calcul du Tiers (en pression) :}
+            $$ \frac{210 \text{ bars}}{3} = \mathbf{70 \text{ bars}} $$
+            
+            \item \textbf{Volume disponible (1/3) :}
+            $$ 70 \text{ bars} \times 15L = \mathbf{1050 \text{ Litres}} $$
+            
+            \item \textbf{Autonomie (Demi-tour) :}
+            $$ \frac{1050}{100} \approx \mathbf{10 \text{ minutes}} $$
+        \end{enumerate}
+
+        \column{0.5\textwidth}
+        \begin{exampleblock}{Comparaison Finale à 30m}
+            \begin{itemize}
+                \item Calcul simpliste : \textbf{24 min} (Dangereux)
+                \item Calcul DTR : \textbf{20 min} (Standard)
+                \item Règle des Tiers : \textbf{10 min} (Très sécurisé)
+            \end{itemize}
+        \end{exampleblock}
+    \end{columns}
+\end{frame}

@@ -1,0 +1,47 @@
+name: Build PDF
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install LaTeX + deps
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            make rsync \
+            texlive-latex-base texlive-latex-recommended texlive-latex-extra \
+            texlive-fonts-recommended texlive-fonts-extra \
+            texlive-lang-french \
+            latexmk
+
+      - name: Build N1 PDF
+        run: |
+          make n1
+          ls -lah output
+
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cours-n1-pdf
+          path: output/cours-n1.pdf
+
+      - name: Build N3 PDF
+        run: |
+          make n3
+          ls -lah output
+      
+      - name: Upload N3 PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cours-n3-pdf
+          path: output/cours-n3.pdf

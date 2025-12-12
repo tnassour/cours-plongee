@@ -1,0 +1,294 @@
+
+% ==============================================================================
+% SECTION 2: CALCULS D'AUTONOMIE
+% ==============================================================================
+\section{Calculs d'Autonomie}
+
+\begin{frame}{Introduction}
+    La planification de la plongée nécessite des calculs d'autonomie précis 
+    pour garantir la sécurité de la palanquée, surtout en absence de Directeur de Plongée (DP).
+    \begin{block}{Objectifs}
+        \begin{itemize}
+            \item Comprendre la relation entre pression, volume et consommation d'air.
+            \item Savoir calculer l'autonomie en fonction de la profondeur et de la consommation.
+            \item Appliquer la règle des tiers pour une gestion sécurisée du gaz.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+% --- D. LES BOUTEILLES/ÉPROUVETTES (Volumes) ---
+% Macro pour dessiner une bouteille
+% #1: x, #2: y, #3: Hauteur remplissage (0 à 1), #4: Label Volume, #5: Label Math
+\newcommand{\drawbottle}[5]{
+    % #1: x, #2: y
+    % #3: Volume d'AIR (1.0 = plein, 0.5 = moitié, 0.25 = quart)
+    % #4: Texte Volume, #5: Texte Math
+    
+    \begin{scope}[shift={(#1,#2)}]
+        % --- 1. LE REMPLISSAGE (L'EAU D'ABORD) ---
+        % On remplit TOUT le volume possible en EAU (Cyan)
+        % Le goulot (en bas) + le corps (en haut)
+        % Comme ça, le bas ne sera jamais blanc.
+        
+        % Le Goulot (Trapèze du bas)
+        \fill[cyan!40] (-0.1, -1) -- (0.1, -1) -- (0.3, -0.8) -- (-0.3, -0.8) -- cycle;
+        
+        % Le Corps principal (Rectangle) - On le remplit totalement d'eau par défaut
+        \fill[cyan!40] (-0.3, -0.8) rectangle (0.3, 1);
+
+        % --- 2. L'AIR (LE BLANC PAR DESSUS) ---
+        % On calcule la hauteur d'AIR.
+        % Hauteur totale du corps = 1.8 (de -0.8 à 1.0)
+        % Hauteur Air = 1.8 * #3
+        % Le rectangle d'air part du HAUT (1.0) et descend.
+        \fill[white] (-0.28, 0.98) rectangle (0.28, {1.0 - (1.8 * #3)});
+
+        % --- 3. LE CONTOUR (NOIR) ---
+        % On redessine les traits noirs par dessus les couleurs
+        \draw[thick, black] (-0.3, 1) -- (-0.3, -0.8) -- (-0.1, -1) -- (0.1, -1) -- (0.3, -0.8) -- (0.3, 1) -- cycle;
+        % Petite courbe pour fermer le haut joliment (optionnel)
+        %\draw[thick, black] (-0.3, 1) arc(180:0:0.3cm and 0.05cm); 
+
+        % --- 4. TEXTES ---
+        % Texte volume à droite
+        \node[right, text=blue!80!black, font=\bfseries\small] at (0.4, 0) {#4};
+        
+        % Texte Math (= 12) loin à droite
+        \node[right, text=black, font=\bfseries\large] at (4.5, 0) {= 12};
+    \end{scope}
+}
+
+\begin{frame}{Rappels Physiques}
+    \begin{columns}
+        \begin{column}{0.6\textwidth}
+            \centering
+            \begin{tikzpicture}[
+                scale=0.65, transform shape, % Ajuste la taille pour que ça rentre
+                font=\sffamily\bfseries,
+                % Définition des couleurs spécifiques à l'image
+                colEau/.style={fill=cyan!30},
+                colTerre/.style={fill=brown!60!black},
+                colTexteRouge/.style={text=red, fill=white, inner sep=2pt, font=\bfseries},
+                colBoite/.style={fill=white, text=blue!80!black, draw=blue!80!black, thin, inner sep=3pt},
+                arrowStyle/.style={->, >=Latex, red, line width=4pt}
+            ]
+
+            % --- A. DÉCORS (Fond) ---
+            % 1. L'EAU : On la fait commencer à x=0 pour qu'elle passe SOUS la falaise.
+            % Plus de trou possible !
+            \fill[cyan!20] (0, 0.5) rectangle (14, -7.5);
+            
+            % Surface de l'eau (Vagues)
+            \draw[cyan!50, decorate, decoration={snake, amplitude=1.5pt, segment length=5pt}] (0, 0.5) -- (14, 0.5);
+
+            % La Falaise (à gauche)
+            \fill[brown!70!black] (-0.5,1) -- (2,1) -- (2.2, -0.5) -- (1.8, -2) -- (2, -4) -- (1.5, -7.5) -- (-0.5, -7.5) -- cycle;
+            \node[text=blue!80!black, anchor=south west] at (-0.5, 0.5) {Surface};
+
+            % --- B. LA FLÈCHE DE PRESSION (Axe central) ---
+            % On trace une grande flèche rouge vers le bas
+            \draw[arrowStyle] (4, 0.5) -- (4, -7);
+            \node[text=red, align=center, font=\bfseries\small] at (4, 1) {P. Absolue\\1 bar};
+
+            % --- C. LES ÉTAGES (Profondeur & Pression) ---
+            
+            % Niveau 10m
+            \node[colBoite] at (1, -2) {10m};
+            \node[colTexteRouge] at (4, -2) {2 bars};
+
+            % Niveau 20m
+            \node[colBoite] at (1, -4.5) {20m};
+            \node[colTexteRouge] at (4, -4.5) {3 bars};
+
+            % Niveau 30m
+            \node[colBoite] at (1, -7) {30m};
+            \node[colTexteRouge] at (4, -7) {4 bars};
+
+            % Dessin des 4 bouteilles
+            % Surface (0m) : 1 bar -> Vol 12 (100%)
+            \drawbottle{7}{1}{1}{12 litres}{}
+            
+            % 10m : 2 bars -> Vol 6 (50%)
+            \drawbottle{7}{-1.5}{0.5}{6 litres}{}
+            
+            % 20m : 3 bars -> Vol 4 (33%)
+            \drawbottle{7}{-4}{0.33}{4 litres}{}
+            
+            % 30m : 4 bars -> Vol 3 (25%)
+            \drawbottle{7}{-6.5}{0.25}{3 litres}{}
+
+            \end{tikzpicture}
+        \end{column}
+
+        \begin{column}{0.35\textwidth}
+            \begin{block}{Loi de Mariotte}
+                Les volumes gazeux sont inversement proportionnels à la pression.
+                $$ P \times V = \text{Constante} $$
+                $$ P_1 \times V_1 = P_2 \times V_2 $$
+            \end{block}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{La Physique en application à l'autonomie}
+    \begin{block}{Rappel}
+        L'air délivré par le détendeur est ramené à la pression ambiante (ou absolue) 
+        pour pouvoir être respiré sous l'eau.  
+    \end{block}
+    \begin{exampleblock}{Exemple de consommation (20L/min surface)}
+        \begin{itemize}
+            \item Surface (1 bar) : 20 L/min
+            \item 10m (2 bars) : $20 \times 2 = 40$ L/min
+            \item 20m (3 bars) : $20 \times 3 = 60$ L/min
+        \end{itemize}
+    \end{exampleblock}
+    \begin{alertblock}{Attention}
+        La consommation d'air augmente avec la profondeur. 
+        Il est donc crucial de planifier ses plongées en tenant compte de l'autonomie.
+    \end{alertblock}
+\end{frame}
+
+% --- FRAME 1 : EXERCICE (À afficher avant pour les élèves) ---
+\begin{frame}{Exercice : Calcul d'Autonomie}
+    \textbf{Données :}
+    \begin{itemize}
+        \item Plongeur avec un Bloc de \textbf{15 Litres} gonflé à \textbf{200 bars}.
+        \item Consommation en surface estimée à \textbf{20 L/min}.
+        \item On néglige la réserve pour cet exercice (Volume dispo $\approx$ \textbf{?} L).
+    \end{itemize}
+    
+    \vspace{0.5cm}
+    
+    \textbf{À vous de jouer : complétez le tableau suivant.}
+    
+    \begin{table}[]
+        \centering
+        \renewcommand{\arraystretch}{1.5} % Agrandit les cases pour la lisibilité
+        \begin{tabular}{cccc}
+        \toprule
+        \textbf{Prof.} & \textbf{Pression (Pabs)} & \textbf{Conso à Prof.} & \textbf{Autonomie} \\
+        \midrule
+        0 m    & 1 bar       & 20 L/min         & \textbf{?} \\ 
+        \hline
+        20 m   & \textbf{?}  & \textbf{?}       & \textbf{?} \\ 
+        \hline
+        40 m   & \textbf{?}  & \textbf{?}       & \textbf{?} \\ 
+        \bottomrule
+        \end{tabular}
+    \end{table}
+\end{frame}
+
+% --- FRAME 2 : SOLUTION (Votre frame originale améliorée) ---
+\begin{frame}{Solution : Calcul d'Autonomie}
+    \begin{columns}
+        \begin{column}{0.4\textwidth}
+            $$ \text{Autonomie} = \frac{\text{Air disponible}}{\text{Consommation à prof.}} $$
+        \end{column}
+        \begin{column}{0.6\textwidth}
+            \begin{exampleblock}{Rappel Données}
+                Bloc 15L à 200b ($\approx$ 3000L). Conso surface : 20 L/min.
+            \end{exampleblock}
+        \end{column}
+    \end{columns}
+
+    \begin{table}[]
+        \centering
+        \renewcommand{\arraystretch}{1.3}
+        \begin{tabular}{cccc}
+        \toprule
+        Prof. & Pression & Conso ($P \times 20$) & Autonomie \\
+        \midrule
+        0m    & 1b       & 20 L/min     & $3000 / 20 = \mathbf{150 \text{ min}}$ \\
+        20m   & 3b       & 60 L/min     & $3000 / 60 = \mathbf{50 \text{ min}}$ \\
+        40m   & 5b       & 100 L/min    & $3000 / 100 = \mathbf{30 \text{ min}}$ \\
+        \bottomrule
+        \end{tabular}
+    \end{table}
+    
+    \begin{alertblock}{Constat}
+        L'autonomie est divisée par 3 entre la surface et 20m !
+        Plus on va profond, plus l'air se consomme vite.
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}{Astuce Pratique : La consommation au Palier (3m)}
+    Comment estimer simplement sa consommation en bars pendant le palier ?
+    
+    \begin{block}{L'Astuce "Facile" (Règle du pouce)}
+        Pour simplifier les calculs mentaux sous l'eau, retenez :
+        \centering\Large\textbf{\textcolor{ffessmred}{2 bars par minute}}
+    \end{block}
+
+    \textbf{La Logique (Approximative) :}
+    \begin{itemize}
+        \item Consommation moyenne surface $\approx$ 20 L/min.
+        \item À 3m (1,3 bar) $\rightarrow$ $20 \times 1,3 = 26$ L/min.
+        \item \textbf{Bloc 15L} : $26 \div 15 \approx \mathbf{1,7}$ bar/min $\rightarrow$ Arrondi à \textbf{2 bars}.
+        \item \textbf{Bloc 12L} : $26 \div 12 \approx \mathbf{2,1}$ bars/min $\rightarrow$ Arrondi à \textbf{2 bars}.
+    \end{itemize}
+
+    \begin{exampleblock}{Exemple concret}
+        Pour un palier de \textbf{3 minutes} :
+        $ 3 \text{ min} \times 2 \text{ bars/min} = \mathbf{6 \text{ bars consommés}} $
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Planification et Gestion de l'Air (1/2)}
+
+    % 1. L'Objectif de sécurité
+    \begin{alertblock}{Objectif Prioritaire}
+        En autonomie, la planification est indispensable pour \textbf{éviter la panne d'air}.
+    \end{alertblock}
+
+    \vspace{0.4cm}
+
+    % 2. Les paramètres du calcul
+    \textbf{Les 3 paramètres à prendre en compte :}
+    \begin{enumerate}
+        \item \textbf{Le Profil de la plongée} : La profondeur influe directement sur la consommation.
+        \item \textbf{Le Volume de la bouteille} : La quantité d'air disponible au départ.
+        \item \textbf{La Consommation du plongeur} : Un paramètre personnel et variable.
+    \end{enumerate}
+
+    \vspace{0.3cm}
+\end{frame}
+
+\begin{frame}{Planification et Gestion de l'Air (2/2)}
+    % 3. La variabilité de la consommation (Note importante)
+    \begin{block}{Attention à la consommation variable}
+        Ce paramètre est difficile à évaluer car il évolue au cours de la plongée selon :
+        \begin{itemize}
+            \item \textbf{Le Froid}
+            \item \textbf{Les Efforts} (courant, palmage, stabilisation)
+            \item Le Stress
+        \end{itemize}
+    \end{block}
+
+\end{frame}
+
+\begin{frame}{Planification : La Règle des Tiers}
+    Pour gérer sa sécurité et celle de la palanquée, on utilise souvent la règle des tiers pour gérer le gaz.
+
+    \begin{columns}
+        \column{0.5\textwidth}
+        \begin{itemize}
+            \item \textbf{1/3} : Pour l'aller / le fond.
+            \item \textbf{1/3} : Pour le retour / la DTR.
+            \item \textbf{1/3} : Sécurité (imprévus, assistance).
+        \end{itemize}
+       
+        \column{0.5\textwidth}
+        \begin{block}{Exemple (15L à 200b)}
+            \begin{itemize}
+                \item Air total : 3000 Litres.
+                \item Air utilisable fond : 1000 Litres.
+                \item À 40m (Conso 75L/min) :
+                $$ 1000 / 75 \approx 13 \text{ min} $$
+            \end{itemize}
+        \end{block}
+    \end{columns}
+
+    \begin{alertblock}{Info Consommation}
+        Si on n'a jamais mesuré sa consommation personnelle, on prend comme référence \textbf{15 L/min} (en surface).
+    \end{alertblock}
+\end{frame}

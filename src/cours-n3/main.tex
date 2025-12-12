@@ -1,0 +1,180 @@
+\documentclass[aspectratio=169]{beamer}
+
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usetikzlibrary{shapes, arrows.meta, positioning, fit, backgrounds, calc, decorations.pathmorphing, shapes.geometric, shapes.multipart}
+
+% =======================
+% Thème FFESSM "perso"
+% =======================
+\usetheme{Madrid}
+\usecolortheme{whale}
+
+% Couleurs type FFESSM
+\definecolor{ffessmblue}{RGB}{0,70,140}
+\definecolor{ffessmlight}{RGB}{220,235,247}
+\definecolor{ffessmred}{RGB}{190,30,45}
+\definecolor{ffessmdarkblue}{RGB}{0,55,110}
+
+\setbeamercolor{structure}{fg=ffessmblue}
+\setbeamercolor{title}{fg=white,bg=ffessmblue}
+\setbeamercolor{frametitle}{fg=white,bg=ffessmblue}
+\setbeamercolor{block title}{bg=ffessmblue,fg=white}
+\setbeamercolor{block body}{bg=ffessmlight,fg=black}
+\setbeamercolor{section in head/foot}{bg=ffessmdarkblue,fg=white}
+\setbeamercolor{author in head/foot}{bg=ffessmdarkblue,fg=white}
+
+\setbeamertemplate{navigation symbols}{}
+
+% --- Définition des couleurs (Palette Sémantique) ---
+% Fond des boîtes supérieures (Causes/Infractions)
+\definecolor{FillCause}{RGB}{250, 215, 200} 
+% Fond des boîtes centrales (Types de responsabilité)
+\definecolor{FillConcept}{RGB}{0, 145, 200} 
+% Couleur principale (Texte, Bordures, Flèches)
+\definecolor{PrimaryColor}{RGB}{0, 50, 120}  
+% Arrière-plan général du diagramme
+\definecolor{CanvasBg}{RGB}{235, 240, 235}    
+% Couleur d'alerte/emphase
+\definecolor{AlertColor}{RGB}{220, 20, 60}
+
+% =======================
+% Header with CST logo
+% =======================
+% Put CST logo inside the existing title bar (frametitle)
+% --- FrameTitle: title left, CST logo hard-right
+\setbeamertemplate{frametitle}{
+  \nointerlineskip
+  \begin{beamercolorbox}[wd=\paperwidth,ht=3ex,dp=1.2ex]{frametitle}
+    \begin{minipage}[c]{0.90\paperwidth}
+      \hspace{0.4cm}\insertframetitle
+    \end{minipage}%
+    \begin{minipage}[c]{0.10\paperwidth}
+      \raggedleft
+      \includegraphics[height=2.5ex]{images/logo_cst}\hspace{0.4cm}
+    \end{minipage}
+  \end{beamercolorbox}
+}
+
+% Bandeau section (en haut) sur toutes les pages
+\setbeamertemplate{headline}{
+  \begin{beamercolorbox}[wd=\paperwidth,ht=3.2ex,dp=1ex,left]{section in head/foot}
+    \hspace{0.5cm}\scriptsize\bfseries \insertsectionhead
+  \end{beamercolorbox}
+}
+
+% Pied de page personnalisé
+\setbeamertemplate{footline}{%
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=.70\paperwidth,ht=2.5ex,dp=1.25ex,left]{author in head/foot}%
+      \hspace*{1em}\insertshortauthor{} — \insertshorttitle{}
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.30\paperwidth,ht=2.5ex,dp=1.25ex,center]{date in head/foot}%
+      \insertframenumber{} / \inserttotalframenumber
+    \end{beamercolorbox}%
+  }%
+}
+
+% =======================
+% Infos titre
+% =======================
+\title[Formation Théorique N3]{Formation Théorique Niveau 3}
+\author[Théo NASSOUR]{Théo NASSOUR\\\small Stagiaire MF1}
+\institute[CST]{CST — Club Subaquatique Thiernois}
+\date[]{\today}
+
+% Configuration de l'affichage
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{items}[circle]
+
+
+% Logos sur la page de titre
+\titlegraphic{%
+  \includegraphics[height=1.4cm]{images/logo_cst}\hfill
+  \includegraphics[height=2cm]{images/logo_ffessm}
+}
+
+% Pour avoir un peu plus d'espace
+\setlength{\parskip}{4pt}
+
+% This adds a slide with the Part title automatically when you use \part{}
+\AtBeginPart{
+  \setbeamertemplate{frametitle continuation}{}
+  \begin{frame}
+    \centering
+    \partpage
+  \end{frame}
+}
+
+% Pour afficher la table des matières à chaque début de section
+\AtBeginSection[]
+{
+  {
+    \setbeamertemplate{headline}{}
+    \begin{frame}
+      \frametitle{Table of Contents}
+      \tableofcontents[currentsection]
+    \end{frame}
+  }
+}
+
+\begin{document}
+
+% Page de titre
+{
+  \setbeamertemplate{headline}{}
+  \setbeamertemplate{footline}{}
+  \begin{frame}
+    \titlepage
+  \end{frame}
+}
+
+% Table des matières
+{
+  \setbeamertemplate{headline}{}
+  \setbeamertemplate{footline}{}
+  \setbeamertemplate{frametitle continuation}{}
+  \begin{frame}[allowframebreaks]{Plan du cours}
+    \textbf{1ère Partie}
+    \tableofcontents[part=1]
+    
+    \vspace{1em}
+
+    \textbf{2ème Partie}
+    \tableofcontents[part=2]
+  \end{frame}
+}
+
+
+% ==========================================
+% PARTIE 1
+% ==========================================
+\part{Théorie N3 - 1ère Partie\\Réglementation, Autonomie, Barotraumatismes, ADD}
+
+\input{slides/1-reglementation-preogatives}
+\input{slides/2-calculs-autonomie}
+\input{slides/3-barotraumatismes}
+\input{slides/4-accident-desaturation}
+\input{slides/5-conclusion}
+
+% ==========================================
+% PARTIE 2
+% ==========================================
+\part{Théorie N3 - 2ème Partie\\Décompression, Intoxications, Froid, Organisation}
+
+\input{slides/6-rappels}
+\input{slides/7-intoxications-gazeuses}
+\input{slides/8-le-froid}
+\input{slides/9-organisation-autonomie}
+\input{slides/10-outils-decompression}
+\input{slides/11-conclusion}
+
+\end{document}
