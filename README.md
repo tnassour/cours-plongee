@@ -17,8 +17,15 @@ Ensure you have the necessary LaTeX packages for your documents (e.g., if using 
 The Makefile supports building specific courses. Currently, it includes:
 
 - `n1`: Builds the `cours-n1` course.
+- `n3`: Builds the `cours-n3` course.
+- `all`: Builds all available courses.
 
-To build a course, run:
+To build a specific course, run:
 
 ```bash
 make n1
+# or
+make n3
+# or
+make all
+```
