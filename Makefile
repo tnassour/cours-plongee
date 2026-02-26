@@ -1,10 +1,13 @@
 .ONESHELL:
-.PHONY: all n1 n3 build clean
+.PHONY: all n1 n2 n3 build clean
 
-all: n1 n3
+all: n1 n2 n3
 
 n1:
 	$(MAKE) build COURSE=cours-n1
+
+n2:
+	$(MAKE) build COURSE=cours-n2
 
 n3:
 	$(MAKE) build COURSE=cours-n3
@@ -26,6 +29,16 @@ build:
 	cd ../..
 	mkdir -p output
 	cp build/$(COURSE)/main.pdf output/$(COURSE).pdf
+	@echo "Compiling subfile main.tex in slides subfolders ..."
+	for subdir in build/$(COURSE)/slides/*/; do \
+		if [ -f "$$subdir/main.tex" ]; then \
+			echo "Compiling $$subdir/main.tex ..."; \
+			subfolder=$$(basename $$subdir); \
+			(cd $$subdir && pdflatex --shell-escape main.tex && pdflatex --shell-escape main.tex); \
+			mkdir -p output/$(COURSE); \
+			cp build/$(COURSE)/slides/$$subfolder/main.pdf output/$(COURSE)/$$subfolder.pdf; \
+		fi; \
+	done
 
 clean:
 	@echo "Cleaning build directory and output files"
