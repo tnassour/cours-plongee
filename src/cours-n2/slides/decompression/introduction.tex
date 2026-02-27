@@ -1,7 +1,6 @@
-% --- SECTION 1 : INTRODUCTION ---
 \section{Introduction}
 
-% --- FRAME 1 : INTRODUCTION ET OBJECTIFS ---
+% --- INTRODUCTION ET OBJECTIFS ---
 \begin{frame}{Pourquoi calculer sa décompression ?}
     \begin{itemize}
         \item \textbf{Objectif vital :} Éviter l'Accident de Désaturation (ADD).
@@ -13,7 +12,21 @@
     \end{block}
 \end{frame}
 
-% --- FRAME 2 : LA LOI DE HENRY (PHYSIQUE) ---
+% --- LE CADRE LÉGAL (ART. A. 322-80) ---
+\begin{frame}{Cadre réglementaire (Code du Sport)}
+    Selon l'\textbf{Art. A. 322-80}, le contrôle des paramètres est obligatoire en milieu naturel :
+    \begin{itemize}
+        \item \textbf{Équipements obligatoires :} \textcolor{ffessmred}{Tout plongeur doit pouvoir contrôler les caractéristiques personnelles de sa plongée et de sa remontée (\textbf{ordinateur} ou \textbf{tables/timer}).}
+        \item \textbf{Publics concernés :} 
+        \begin{itemize}
+            \item Chaque plongeur en \textbf{autonomie}.
+            \item Chaque plongeur \textbf{encadré au-delà de 20 mètres}.
+        \end{itemize}
+        \item \textbf{Sécurité :} Obligation d'un système d'alimentation de secours (\textbf{octopus}) sans partage d'embout.
+    \end{itemize}
+\end{frame}
+
+% --- LA LOI DE HENRY (PHYSIQUE) ---
 \begin{frame}{La Loi de Henry (1803)}
     \textbf{Loi de dissolution des gaz dans les liquides :}
     
@@ -36,7 +49,7 @@
     \end{itemize}
 \end{frame}
 
-% --- FRAME 3 : CONSÉQUENCES POUR LE PLONGEUR ---
+% --- CONSÉQUENCES POUR LE PLONGEUR ---
 \begin{frame}{Conséquences pour le plongeur}
     \begin{columns}[c]
         \column{0.5\textwidth}
@@ -45,34 +58,54 @@
         \end{center}
 
         \column{0.5\textwidth}
-        \begin{enumerate}
-            \item \textbf{À la descente :} La pression augmente, notre corps stocke de l'azote ($N_2$) dans les tissus.
-            \item \textbf{À la remontée :} La pression diminue, l'azote doit être évacué par les poumons par expiration.
-            \item \textbf{Danger :} Si la décompression est trop rapide, l'azote sort des tissus sous forme de \textbf{bulles} avant d'atteindre les poumons.
-        \end{enumerate}
-        
-        \begin{alertblock}{Risque majeur}
-            Une remontée trop rapide ou le non-respect des paliers provoque l'Accident de Désaturation (ADD).
-        \end{alertblock}
+        \only<1>{
+            \begin{center}
+                \begin{enumerate}
+                    \item \textbf{À la descente :} La pression augmente, notre corps stocke de l'azote ($N_2$) dans les tissus.
+                    \item \textbf{À la remontée :} La pression diminue, l'azote doit être évacué par les poumons par expiration.
+                \end{enumerate}
+            \end{center}
+        }
+        \only<2->{
+            \begin{center}
+                \textbf{Danger :} Si la décompression est trop rapide, l'azote sort des tissus sous forme de \textbf{bulles} avant d'atteindre les poumons.
+
+                \begin{alertblock}{Risque majeur}
+                    Une remontée trop rapide ou le non-respect des paliers provoque l'Accident de Désaturation (ADD).
+                \end{alertblock}
+            \end{center}
+        }
     \end{columns}
 \end{frame}
 
-% --- FRAME 4 : LE CADRE LÉGAL (ART. A. 322-80) ---
-\begin{frame}{Cadre réglementaire (Code du Sport)}
-    Selon l'\textbf{Art. A. 322-80}, le contrôle des paramètres est obligatoire en milieu naturel :
-    \begin{itemize}
-        \item \textbf{Équipements obligatoires :} \textcolor{ffessmred}{Tout plongeur doit pouvoir contrôler les caractéristiques personnelles de sa plongée et de sa remontée (\textbf{ordinateur} ou \textbf{tables/timer}).}
-        \item \textbf{Publics concernés :} 
+\begin{frame}{L'Accident de Décompression (ADD)}
+    \begin{columns}[c]
+        \column{0.5\textwidth}
+        \textbf{Cause principal :}
         \begin{itemize}
-            \item Chaque plongeur en \textbf{autonomie}.
-            \item Chaque plongeur \textbf{encadré au-delà de 20 mètres}.
+            \item Présence de \textbf{bulles d'azote} dans le corps.
         \end{itemize}
-        \item \textbf{Sécurité :} Obligation d'un système d'alimentation de secours (\textbf{octopus}) sans partage d'embout.
-    \end{itemize}
+
+        \vspace{0.5cm}
+        
+        \textbf{Symptômes :}
+        \begin{itemize}
+            \item Paralysie des membres.
+            \item Difficultés pour uriner.
+            \item Troubles de la vision.
+            \item Troubles de la parole.
+            \item Troubles de l'équilibre.
+        \end{itemize}
+
+        \column{0.5\textwidth}
+        \begin{center}
+            \includegraphics[width=\columnwidth]{images/risques_decompression}
+        \end{center}
+    \end{columns}
 \end{frame}
 
-% --- FRAME 5 : LES OUTILS DE CALCUL ---
-\begin{frame}{Comment ?}
+% --- LES OUTILS DE CALCUL ---
+\begin{frame}{Comment éviter ou réduire le risque de l'ADD ?}
     \begin{itemize}
         \item \textbf{Les Tables (ex: MN92) :} Procédure forfaitaire de remontée.
         \item \textbf{L'ordinateur de plongée :} Calcule en temps réel la saturation selon des modèles mathématiques intégrant la loi de Henry.
