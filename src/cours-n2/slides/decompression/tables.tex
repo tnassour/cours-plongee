@@ -148,27 +148,132 @@
     \end{center}
 \end{frame}
 
-\begin{frame}{Utilisation des tables : les paramètres clés}
-    \begin{itemize}
-        \item \textbf{Le profil "Carré" :} On considère que le plongeur est descendu immédiatement à la profondeur max et y est resté tout au long de l'immersion.
-        \item \textbf{Profondeur à retenir :} On utilise toujours la \textcolor{ffessmred}{\textbf{profondeur maximale}} atteinte pendant la plongée.
-        \item \textbf{Temps de plongée :}
-        \begin{itemize}
-            \item Il commence au \textcolor{ffessmred}{\textbf{début de la descente}}.
-            \item Il s'arrête dès que le plongeur \textcolor{ffessmred}{\textbf{débute sa remontée}}
-                 (vitesse préconisée entre \textcolor{ffessmred}{15 et 17m/min}).
-        \end{itemize}
-        \item \textbf{La remontée lente :} Si la vitesse est inférieure à 15m/min, le temps de remontée jusqu'au premier palier doit être \textbf{ajouté} au temps de plongée.
-    \end{itemize}
+\begin{frame}{Exemple de plongées Successives}
+    \only<1>{
+        \begin{center}
+            \includegraphics[width=0.7\textwidth]{images/plongee_successives_question}
+        \end{center}
+    }
+    \only<2->{
+        \begin{columns}
+            \column{0.5\textwidth}
+            \begin{center}
+                \includegraphics[width=\textwidth]{images/plongee_successives_question}
+            \end{center}
+            
+            \column{0.5\textwidth}
+            \begin{center}
+                \tikz[remember picture, baseline=(tab1.base)]{
+                    \node[inner sep=0pt] (tab1) {
+                        \includegraphics[width=0.35\textwidth]{images/plongee_successives_table_20}
+                        };
+                }
+                \vspace{0.3cm}
+                \onslide<3->{
+                    \tikz[remember picture, baseline=(tab2.base)]{
+                        \node[inner sep=0pt] (tab2) {
+                            \includegraphics[width=\textwidth]{images/plongee_successives_majoration}
+                            };
+                    }
+                }
+            \end{center}
 
-    \begin{alertblock}{Principe fondamental des tables MN90}
-        Les tables MN90 considèrent \textbf{toutes les plongées comme des plongées carrées} : le plongeur est supposé être resté à la profondeur maximale pendant toute la durée de l'immersion. C'est une approche \textbf{sécuritaire mais pénalisante}.
-    \end{alertblock}
+            \onslide<4->{
+                \vspace{-0.3cm}
+
+                        \tikz[remember picture, baseline=(tab3.base)]{
+                            \node[inner sep=0pt] (tab3) {\includegraphics[width=0.4\textwidth]{images/plongee_successives_resultat}};
+                        }
+            }
+        \end{columns}
+    }
+
+    % Dessin de la flèche en arc de cercle au slide 3
+    \begin{tikzpicture}[remember picture, overlay]
+        \only<3->{
+            % point à 1/4 depuis la gauche sur le haut de tab2
+            \path (tab2.north west) -- (tab2.north east) coordinate[pos=0.25] (tab2topquarter);
+
+            \draw[red, line width=3pt, ->, >=stealth] 
+                (tab1.west) to[bend right=30] (tab2topquarter);
+
+            \node[anchor=east, black, align=right, font=\scriptsize] at (tab1.west) {
+                \hspace{-0.5cm}
+                \textbf{Intervalle =} 3h09
+            };
+        }
+        \only<4->{
+            % point à 3/4 depuis la gauche sur le bas de tab2
+            \path (tab2.south west) -- (tab2.south east) coordinate[pos=0.75] (tab2lowerquarter);
+
+            \draw[red, line width=3pt, ->, >=stealth] 
+                (tab2lowerquarter) 
+                    to[bend left=30] 
+                (tab3.east);
+            
+            \node[anchor=west, black, align=right, font=\scriptsize] at (tab3.east) {
+                \hspace{1cm}
+                \textbf{Temps fictif =} \\
+                40 min (réel) \\
+                + 19 min (maj) \\
+                = \textbf{59 min}
+            };
+        }
+    \end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Resumé de plongées Successives}
+    \begin{center}
+        \includegraphics[height=0.85\textheight]{images/plongee_successives}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Calcul avec les tables : Les règles de base}
+    \begin{itemize}
+        \item \textbf{Le modèle "Carré" :} Les tables MN90 considèrent que le plongeur reste à sa \textcolor{ffessmred}{\textbf{profondeur maximale}} pendant toute la durée de l'immersion.
+        \item \textbf{Détermination de la durée :}
+        \begin{itemize}
+            \item \textbf{Départ :} Début de la descente.
+            \item \textbf{Fin :} Moment où le plongeur quitte le fond pour entamer sa remontée (vitesse de 15 à 17 m/min).
+        \end{itemize}
+        \item \textbf{Sécurité (Lecture "en haut") :} Si les paramètres réels ne figurent pas exactement dans la table :
+        \begin{itemize}
+            \item On choisit la profondeur immédiatement \textbf{supérieure}.
+            \item On choisit la durée immédiatement \textbf{supérieure}.
+        \end{itemize}
+        \item \textbf{Cas particulier :} Si la remontée est lente ($< 15$ m/min), le temps jusqu'au premier palier est ajouté à la durée de plongée.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{La chaîne de calcul : GPS et Majoration}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \begin{block}{1. Sortie de la $1^{ère}$ plongée}
+            La table donne un \textbf{GPS} (Groupe de Plongée Successive). Cette lettre représente l'azote résiduel dans le sang.
+        \end{block}
+        
+        \begin{block}{2. Intervalle de surface}
+            Selon le temps passé hors de l'eau, le \textbf{taux d'azote} diminue. On trouve ce nouveau taux dans le \textbf{Tableau 1}.
+        \end{block}
+
+        \column{0.48\textwidth}
+        \begin{block}{3. Calcul de la $2^{nde}$ plongée}
+            On utilise le \textbf{Tableau 2} pour trouver la \textbf{Majoration} (en minutes).
+        \end{block}
+        
+        \begin{alertblock}{Règle d'or}
+            \centering
+            \textbf{Durée fictive =} \\
+            Durée réelle + Majoration
+        \end{alertblock}
+    \end{columns}
+    \vspace{0.3cm}
+    \textit{Note : C'est cette \textbf{durée fictive} que l'on cherche dans la table pour déterminer les nouveaux paliers.}
 \end{frame}
 
 \begin{frame}{Avantages et Limites des Tables}
     \begin{columns}
-        \begin{column}{0.5\textwidth}
+        \begin{column}{0.4\textwidth}
             \textbf{Avantages :}
             \begin{itemize}
                 \item Fiabilité (pas de pile).
@@ -176,7 +281,7 @@
                 \item Idéal pour la planification.
             \end{itemize}
         \end{column}
-        \begin{column}{0.5\textwidth}
+        \begin{column}{0.4\textwidth}
             \textbf{Limites :}
             \begin{itemize}
                 \item Très pénalisantes (profil carré).
