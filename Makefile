@@ -31,12 +31,13 @@ build:
 	cp build/$(COURSE)/main.pdf output/$(COURSE).pdf
 	@echo "Compiling subfile main.tex in slides subfolders ..."
 	for subdir in build/$(COURSE)/slides/*/; do \
-		if [ -f "$$subdir/main.tex" ]; then \
-			echo "Compiling $$subdir/main.tex ..."; \
-			subfolder=$$(basename $$subdir); \
-			(cd $$subdir && pdflatex --shell-escape main.tex && pdflatex --shell-escape main.tex); \
+		subfolder=$$(basename $$subdir); \
+		echo "Compiling $$subdir/$$subfolder.tex ..."; \
+		if [ -f "$$subdir/$$subfolder.tex" ]; then \
+			echo "Compiling $$subdir/$$subfolder.tex ..."; \
+			(cd $$subdir && pdflatex --shell-escape $$subfolder.tex && pdflatex --shell-escape $$subfolder.tex); \
 			mkdir -p output/$(COURSE); \
-			cp build/$(COURSE)/slides/$$subfolder/main.pdf output/$(COURSE)/$$subfolder.pdf; \
+			cp build/$(COURSE)/slides/$$subfolder/$$subfolder.pdf output/$(COURSE)/$$subfolder.pdf; \
 		fi; \
 	done
 
