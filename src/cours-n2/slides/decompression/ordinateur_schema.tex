@@ -1,0 +1,65 @@
+\begin{tikzpicture}[
+    node distance=1.5cm and 1.2cm,
+    box/.style={
+        rectangle, 
+        draw=blue!70!black, 
+        fill=blue!10, 
+        very thick, 
+        text centered, 
+        minimum width=2.5cm, 
+        minimum height=1cm,
+        font=\sffamily\small\bfseries
+    },
+    main/.style={
+        box, 
+        fill=blue!30, 
+        minimum width=4cm, 
+        minimum height=2cm,
+        text width=3.5cm
+    },
+    arrow/.style={
+        -Stealth, 
+        thick, 
+        draw=gray!80
+    }
+]
+
+% --- Noeuds (Positions) ---
+
+% Centre
+\node[main] (cpu) {MICROPROCESSEUR (Calculateur)};
+
+% Entrées Gauche
+\node[box, left=of cpu] (gas) {Réglage Gaz ($\% O_2$)};
+\node[box, above=of gas] (temp_sens) {Capteur de Température};
+\node[box, below=of gas, xshift=-1cm] (user) {Boutons (Interface Utilisateur)};
+
+% Capteurs Haut
+\node[box, above=of cpu] (press) {Capteur de Pression};
+\node[box, right=of press] (depth) {Suivi Profondeur/Temps};
+
+% Calcul et Mémoire
+\node[box, right=of cpu, text width=2.8cm] (algo) {Modèle de Décompression (Bühlmann, RGBM...)};
+\node[box, below=of cpu, yshift=-1cm] (log) {Mémoire (Carnet de plongée)};
+
+% Sortie
+\node[box, below=of algo, xshift=1.5cm, fill=blue!50, minimum width=4cm, minimum height=1.5cm, text width=4.5cm] (screen) 
+    {ÉCRAN D'AFFICHAGE \mdseries \footnotesize (Prof., DTR, No-Deco, Temps, Temp., Gaz)};
+
+% --- Flèches (Connexions) ---
+
+\draw[arrow] (press) -- (cpu);
+\draw[arrow] (press) -- (depth);
+\draw[arrow] (temp_sens) -- (cpu);
+\draw[arrow] (gas) -- (cpu);
+\draw[arrow] (user) -- (cpu);
+\draw[arrow] (cpu) -- (algo);
+\draw[arrow] (algo) -- (screen);
+\draw[arrow] (log) -- (screen.west);
+\draw[arrow] (depth) -- (algo);
+\draw[arrow] (cpu) |- ($(screen.north west)!0.25!(screen.south west)$);
+\draw[arrow] ($(algo.south west)!0.25!(algo.south east)$) -- ++(0,-0.5) -| ($(cpu.south west)!0.75!(cpu.south east)$);
+
+\path ($(cpu.south west)!0.25!(cpu.south east)$) coordinate (START);
+\draw[arrow] (START) -- (START |- log.north);
+\end{tikzpicture}

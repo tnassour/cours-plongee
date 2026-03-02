@@ -1,15 +1,44 @@
 % --- SECTION 3 : L'ORDINATEUR DE PLONGÉE ---
 \section{L'ordinateur de plongée}
 
+\begin{frame}{Transition : De la Table à l'Ordinateur}
+    \footnotesize
+    \begin{columns}[c]
+        \begin{column}{0.5\textwidth}
+            \centering
+            \includegraphics[width=\columnwidth]{images/table_vs_ordinateur}
+        \end{column}
+
+        \begin{column}{0.5\textwidth}
+            \textbf{La Logique des Tables :}
+            \begin{itemize}
+                \setlength\itemsep{0em}
+                \item Elles considèrent un \textbf{profil carré}.
+                \item Hypothèse : Tout le temps de plongée est passé à la profondeur \textbf{maximale}.
+                \item \textit{Conséquence :} Pénalisant pour les plongées multi-niveaux.
+            \end{itemize}
+
+            \textbf{La Logique de l'Ordinateur :}
+            \begin{itemize}
+                \setlength\itemsep{0em}
+                \item Il suit le \textbf{profil réel} (ligne orange).
+                \item Calcul dynamique : La plongée est découpée en "tranches" élémentaires pour ajuster la saturation en temps réel.
+            \end{itemize}
+            \vspace{-0.1cm}
+            \begin{exampleblock}{Le Bénéfice pour le Plongeur N3}
+                L'ordinateur optimise le temps de plongée sans palier (courbe de sécurité) en prenant en compte la remontée progressive.
+            \end{exampleblock}
+        \end{column}
+    \end{columns}
+\end{frame}
+
 \begin{frame}{Principe et fonctionnement}
-    \begin{itemize}
-        \item \textbf{Un calculateur en temps réel :} Contrairement aux tables, il découpe la plongée en "tranches" élémentaires pour calculer la saturation[cite: 37, 1721].
-        \item \textbf{Profil réel vs Profil carré :} Il optimise le temps de plongée en tenant compte de la profondeur exacte à chaque instant[cite: 6, 1721].
-        \item \textbf{Composants essentiels :} Horloge (timer), profondimètre et algorithme (modèle mathématique type Bühlmann ou RGBM)[cite: 379].
-    \end{itemize}
-    \begin{exampleblock}{Information clé}
-        L'ordinateur est \textbf{personnel} : il suit votre propre historique de saturation. Il ne doit jamais être prêté ou échangé en cours de journée[cite: 32, 381].
-    \end{exampleblock}
+    \begin{center}
+    \resizebox{!}{0.8\textheight}
+    {
+        \input{slides/decompression/ordinateur_schema}  
+    }
+    \end{center}
 \end{frame}
 
 \begin{frame}{Informations affichées}
