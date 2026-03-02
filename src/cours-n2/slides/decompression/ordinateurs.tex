@@ -41,39 +41,195 @@
     \end{center}
 \end{frame}
 
-\begin{frame}{Informations affichées}
+
+\begin{frame}{L'Ordinateur de Plongée — Réglages}
+    L'ordinateur calcule la saturation en temps réel. Attention aux réglages avant la mise à l'eau :
+    \begin{itemize}
+        \item \textbf{Le Mélange} : Air ou Nitrox. \textit{\textcolor{ffessmred}{Danger} : Un ordi réglé sur Nitrox 
+            pour une plongée à l'air indiquera moins de paliers que nécessaire}.
+        \item \textbf{L'Altitude} : Au-dessus de 300m, les procédures changent (automatique ou manuel).
+        \item \textbf{Les Alarmes} : Ne pas ignorer les alarmes sonores (vitesse de remontée, paliers).
+        \item \textbf{La Dureté} : Possibilité de durcir les paliers pour plus de sécurité 
+            (facteurs de risque).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Ordinateur — Rôle et planification}
+    \textbf{Rôle de l'ordinateur :}
+    \begin{itemize}
+        \item Suivre le \textbf{profil réel} de plongée.
+        \item Calculer la saturation en temps réel.
+        \item Avertir avant et pendant les paliers.
+    \end{itemize}
+
+    \vspace{0.3cm}
+    \textbf{Mode \og PLAN \fg{} :}
+    \begin{itemize}
+        \item Utilise l'historique des plongées.
+        \item Simule la prochaine plongée.
+        \item \textbf{Objectif N2 :} rester dans la courbe de sécurité (sans palier) en autonomie.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Ordinateur — Cohabitation en palanquée}
+    \begin{block}{Accord dans la palanquée}
+        Avant de s'immerger, on harmonise les instruments :
+        \begin{itemize}
+            \item \textbf{Comparer les paramètres :} qui est le plus restrictif ?
+            \item \textbf{Comprendre l'autre ordi :} sait-on lire le binôme ?
+            \item \textbf{Paliers spécifiques :} paliers profonds / facultatifs (désactivés à l'air).
+        \end{itemize}
+        \vspace{0.2cm}
+        \textbf{$\rightarrow$ On s'accorde en surface sur la conduite à tenir.}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Informations affichées sur un Mares Quad pendant la plongée}
     \begin{columns}
-        \begin{column}{0.6\textwidth}
+        \begin{column}{0.5\textwidth}
             \textbf{Pendant la plongée :}
             \begin{itemize}
-                \item Profondeur actuelle et maximale[cite: 13, 379].
-                \item Temps d'immersion[cite: 12, 380].
-                \item \textbf{No Deco :} Temps restant avant palier[cite: 20, 380].
-                \item Vitesse de remontée[cite: 13, 380].
-            \end{itemize}
-            \textbf{En zone de palier :}
-            \begin{itemize}
-                \item Profondeur du palier le plus bas[cite: 23].
-                \item \textbf{DTR :} Durée Totale de Remontée (inclut la montée et tous les paliers)[cite: 22, 1723].
+                \item Profondeur actuelle \only<1>{?}\only<2->{\textbf{19.7m}}
+                \item Profondeur maximale \only<1>{?}\only<2->{\textbf{36.5m}}
+                \item Temps d'immersion \only<1>{?}\only<2->{\textbf{20min}}
+                \item \textbf{No Deco :} Temps restant avant palier \only<1>{?}\only<2->{\textbf{38min}}
+                \item Température \only<1>{?}\only<2->{\textbf{23°C}}
+                \item Vitesse de remontée \only<1>{?}\only<2->{\textbf{4 barres (bonne vitesse)}}
             \end{itemize}
         \end{column}
         \begin{column}{0.4\textwidth}
             \centering
-            %\includegraphics[width=\textwidth]{ecran_ordi.png}
-            \textit{Note : Toujours lire la notice de son propre modèle[cite: 17, 35].}
+            \includegraphics[width=\textwidth]{images/schema_ordi_en_plongee}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Informations affichées sur un Mares Quad avec déco}
+    \begin{columns}
+        \begin{column}{0.6\textwidth}
+            \textbf{Données de la plongée en cours :}
+            \begin{itemize}
+                \item Profondeur actuelle \only<1>{?}\only<2->{\textbf{33.0 m}}
+                \item Temps d'immersion \only<1>{?}\only<2->{\textbf{30 min}}
+                \item \textbf{Palier obligatoire} \only<1>{?}\only<2->{\textbf{7 min à 3 m}}
+                \item DTR : Durée totale de remontée (ASC) \only<1>{?}\only<2->{: \textbf{11 min}}
+                \item Mélange gazeux \only<1>{?}\only<2->{: \textbf{Nitrox 32\%}}
+            \end{itemize}
+            
+            \vspace{0.5cm}
+            \begin{quote}
+                \small \textit{Note : L'affichage indique que le plongeur a dépassé la courbe de sécurité et doit effectuer un palier de décompression.}
+            \end{quote}
+        \end{column}
+        
+        \begin{column}{0.4\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{images/schema_ordi_avec_palier}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Informations affichées sur Shearwater Peregrine}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \textbf{Pendant la plongée :}
+            \begin{itemize}
+                \item Profondeur actuelle \onslide<1>{?}\onslide<2->{\textbf{15.7m}}
+                \item Temps de plongée \onslide<1>{?}\onslide<2->{\textbf{$35:51$ min}}
+                \item \textbf{Safety Stop :} Palier de sécurité \onslide<1>{?}\onslide<2->{\textbf{$3:00$ min}}
+                \item \textbf{NDL :} No Deco Limit \onslide<1>{?}\onslide<2->{\textbf{22 min}}
+                \item Saturation des tissus ($N_2$) \onslide<1>{?}\onslide<2->{\textbf{Graphique (Zone jaune)}}
+                \item Vitesse de remontée \onslide<1>{?}\onslide<2->{\textbf{Indicateur fléché (Normal)}}
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.4\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{images/schema_ordi_shearwater_peregrine_tx}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Informations affichées sur un Aqualung i770R - Surface}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \textbf{À la surface (Pré-plongée) :}
+            \begin{itemize}
+                \item Temps en surface (SURF-T) \onslide<1>{?}\onslide<2->{\textbf{$03:26$}}
+                \item Pression bouteille (BAR) \onslide<1>{?}\onslide<2->{\textbf{205 bar}}
+                \item \textbf{GTR (Gas Time Remaining)} \onslide<1>{?}\onslide<2->{\textbf{-- (Calcul en plongée)}}
+                \item État de la batterie \onslide<1>{?}\onslide<2->{\textbf{90\%}}
+                \item Cap du compas \onslide<1>{?}\onslide<2->{\textbf{092° (Est)}}
+                \item Numéro de la plongée \onslide<1>{?}\onslide<2->{\textbf{ici 0 censé être 1}}
+                \item Connectivité Bluetooth \onslide<1>{?}\onslide<2->{\textbf{Activée}}
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.45\textwidth}
+            \centering
+            \includegraphics[height=0.8\textheight]{images/schema_ordi_en_surface}
         \end{column}
     \end{columns}
 \end{frame}
 
 \begin{frame}{Sécurité et procédures en palanquée}
     \begin{itemize}
-        \item \textbf{Gestion de la palanquée :} En cas d'ordinateurs différents, on suit toujours le plus \textbf{pénalisant} (celui qui affiche le plus de paliers)[cite: 25, 384].
         \item \textbf{Panne d'ordinateur :} 
         \begin{itemize}
-            \item Interruption immédiate de la plongée[cite: 26].
-            \item Remontée lente et respect des paliers du binôme (ou majoration de sécurité)[cite: 26, 41].
-            \item \textbf{Pas de ré-immersion avant 24h}[cite: 26].
+            \item Interruption immédiate de la plongée.
+            \item Remontée lente et respect des paliers du binôme (ou majoration de sécurité).
+            \item \textbf{Pas de ré-immersion avant 24h}.
         \end{itemize}
-        \item \textbf{Alarme :} Respecter impérativement les alertes de vitesse de remontée (risque d'ADD)[cite: 19, 380].
+        \item \textbf{Alarme :} Respecter impérativement les alertes de vitesse de remontée (risque d'ADD).
     \end{itemize}
+\end{frame}
+
+
+\begin{frame}{L'Ordinateur de Plongée — Limites et Précautions d'Usage}
+    \begin{columns}[t]
+        \begin{column}{0.48\textwidth}
+            \begin{alertblock}{Les Limites de la Machine}
+                L'ordinateur calcule une saturation théorique mais \textbf{ne connait pas votre état} :
+                \begin{itemize}
+                    \item Froid, fatigue, stress ?
+                    \item Consommation d'air ?
+                    \item Forme physique ?
+                \end{itemize}
+            \end{alertblock}
+        \end{column}
+
+        \begin{column}{0.48\textwidth}
+            \textbf{Consignes Avant Immersion :}
+            \begin{itemize}
+                \item \textbf{Instrument Personnel :} Ne jamais prêter ou échanger un ordinateur en cours de série (il contient VOTRE saturation).
+                \item \textbf{Vérification des Réglages :}
+                \begin{itemize}
+                    \item Est-il en mode \textbf{Nitrox} ou Air ? (Risque d'erreur de calcul).
+                    \item Est-il en mode \textbf{Gauge/Profondimètre} ? (Pas de calcul de désaturation !).
+                \end{itemize}
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Procédure Ordinateur : Vitesse de Remontée Trop Rapide}
+    \small
+    \textbf{Définition :} Vitesse $> 15$ m/min entre 30m et la surface sur une distance $\ge 10$m.
+
+    \begin{block}{Si la ré-immersion est possible ($<$ 3 min)}
+        \begin{enumerate}
+            \item Redescendre au moins à \textbf{mi-profondeur}.
+            \item Y effectuer un palier de \textbf{5 minutes}.
+            \item Remonter et faire \textbf{au moins} (en plus des paliers ordi) :
+            \begin{itemize}
+                \item \textbf{1 minute à 6 mètres}.
+                \item \textbf{5 minutes à 3 mètres}.
+            \end{itemize}
+        \end{enumerate}
+    \end{block}
+
+    \begin{alertblock}{Si la ré-immersion est IMPOSSIBLE}
+        \begin{itemize}
+            \item Mise sous \textbf{Oxygène}.
+            \item \textbf{Évacuation} vers un centre hyperbare.
+        \end{itemize}
+    \end{alertblock}
 \end{frame}
