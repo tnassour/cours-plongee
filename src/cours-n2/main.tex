@@ -11,6 +11,8 @@
 \usepackage{tikz}
 \usetikzlibrary{shapes, arrows.meta, positioning, fit, backgrounds, calc, decorations.pathmorphing, shapes.geometric, shapes.multipart}
 
+\usepackage{subfiles}
+
 % =======================
 % Thème FFESSM "perso"
 % =======================
@@ -86,7 +88,7 @@
 % =======================
 % Infos titre
 % =======================
-\title[Formation Théorique N3]{Formation Théorique Niveau 3}
+\title[Formation Théorique N2]{Formation Théorique Niveau 2}
 \author[Théo NASSOUR]{Théo NASSOUR\\\small Stagiaire MF1}
 \institute[CST]{CST — Club Subaquatique Thiernois}
 \date[]{\today}
@@ -94,7 +96,6 @@
 % Configuration de l'affichage
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{items}[circle]
-
 
 % Logos sur la page de titre
 \titlegraphic{%
@@ -105,14 +106,58 @@
 % Pour avoir un peu plus d'espace
 \setlength{\parskip}{4pt}
 
-% This adds a slide with the Part title automatically when you use \part{}
-\AtBeginPart{
-  \setbeamertemplate{frametitle continuation}{}
+\makeatletter
+% Sauvegarde de la commande \part originale de Beamer
+\let\beamer@originalpart\part
+
+% Redéfinition de \part :
+%   \part{Titre long pour partpage}              → TOC = Titre long
+%   \part[Titre court pour TOC]{Titre long}      → TOC = Titre court
+\renewcommand{\part}[2][]{%
+  \def\beamer@parttocname{#1}%
+  \ifx\beamer@parttocname\empty
+    % Pas d'argument optionnel → on utilise le titre principal pour la TOC
+    \def\beamer@parttocname{#2}%
+  \fi
+  \beamer@originalpart{#2}%
+}
+
+\AtBeginPart{%
+  % Enregistre le numéro de partie, le nom et la page dans le fichier .parttoc
+  \addtocontents{parttoc}{\protect\beamer@partintoc{\the\c@part}{\beamer@parttocname}{\the\c@page}}%
+  % This adds a slide with the Part title automatically when you use \part{}
   \begin{frame}
     \centering
-    \partpage
+    % On recrée le bloc bleu manuellement pour garder le style
+    \begin{beamercolorbox}[sep=16pt,center,shadow=true,rounded=true]{part title}
+      \usebeamerfont{part title}
+      \insertpart\par
+    \end{beamercolorbox}
   \end{frame}
 }
+
+% Création de la commande pour afficher ce sommaire
+\newcommand{\parttableofcontents}{\@starttoc{parttoc}}
+
+% Utilisation de \newcommand car Beamer ne possède pas de beamer@partintoc par défaut
+\newcommand{\beamer@partintoc}[3]{%
+  \ifnum#1>0\relax
+    \leavevmode
+    \begingroup
+        % On synchronise le compteur pour le bullet
+        \c@section=#1\relax
+        % On définit les variables attendues par le template du thème
+        \def\inserttocsectionnumber{#1}%
+        \def\inserttocsection{\hyperlink{page.#3}{#2}}% Définit le texte cliquable
+        \def\inserttocbookmark{}%
+        \def\inserttocfullsection{\hyperlink{page.#3}{#2}}%
+        \def\inserttocfulltag{}%
+        % On appelle le template du thème (qui utilisera \inserttocsection)
+        \usebeamertemplate{section in toc}%
+    \endgroup
+  \fi
+}
+\makeatother
 
 % Pour afficher la table des matières à chaque début de section
 \AtBeginSection[]
@@ -139,43 +184,17 @@
 
 % Table des matières
 {
+  \setcounter{tocdepth}{0} % On ne veut que les \part
   \setbeamertemplate{headline}{}
   \setbeamertemplate{footline}{}
   \setbeamertemplate{frametitle continuation}{}
   \begin{frame}[allowframebreaks]{Plan du cours}
-    \textbf{1ère Partie}
-    \tableofcontents[part=1]
-    
-    \vspace{1em}
-
-    \textbf{2ème Partie}
-    \tableofcontents[part=2]
+    \parttableofcontents
   \end{frame}
 }
+% On remet à 1 immédiatement après pour que la suite fonctionne
+\setcounter{tocdepth}{1}
 
-
-% ==========================================
-% PARTIE 1
-% ==========================================
-\part{Théorie N3 - 1ère Partie\\Réglementation, Autonomie, Barotraumatismes, ADD}
-
-\input{slides/1-reglementation-preogatives}
-\input{slides/2-calculs-autonomie}
-\input{slides/3-barotraumatismes}
-\input{slides/4-accident-desaturation}
-\input{slides/5-conclusion}
-
-% ==========================================
-% PARTIE 2
-% ==========================================
-\part{Théorie N3 - 2ème Partie\\Décompression, Intoxications, Froid, Organisation}
-
-\input{slides/6-rappels}
-\input{slides/7-intoxications-gazeuses}
-\input{slides/8-oedeme-pulmonaire-immersion}
-\input{slides/9-le-froid}
-\input{slides/10-organisation-autonomie}
-\input{slides/11-outils-decompression}
-\input{slides/12-conclusion}
+\subfile{slides/decompression/decompression.tex}
 
 \end{document}

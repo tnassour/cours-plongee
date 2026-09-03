@@ -1,0 +1,28 @@
+\documentclass[../../main.tex]{subfiles} % On remonte d'un dossier pour trouver main.tex
+
+\begin{document}
+
+\ifSubfilesClassLoaded{
+    % Compilé seul : afficher une title page locale
+    \begin{frame}
+        \titlepage
+    \end{frame}
+}{
+    % Compilé via main.tex : ne rien faire (le main gère sa propre title page)
+}
+
+\part[Décompression]{Théorie N2 \\ Décompression}
+
+\begin{frame}
+    \frametitle{Décompression}
+    \tableofcontents % Table des matières LOCALE à cette section/partie
+\end{frame}
+
+\input{slides/decompression/introduction}
+\input{slides/decompression/tables}
+\input{slides/decompression/ordinateurs}
+\input{slides/decompression/parametrage}
+\input{slides/decompression/signes}
+\input{slides/decompression/conclusion}
+
+\end{document}
