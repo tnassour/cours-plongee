@@ -16,6 +16,9 @@
 \ffessmlogo{images/logo_ffessm}
 \clublogo{images/logo_cst}
 
+% Palette FFESSM partagée (emphase inline dans le contenu des slides)
+\input{colors}
+
 % =======================
 % Infos titre
 % =======================
@@ -34,10 +37,8 @@
 
 \begin{document}
 
-% Page de titre
-\begin{frame}[plain]
-  \titlepage
-\end{frame}
+% Page de titre (snippet partagé par tous les cours théoriques)
+\input{title-frame}
 
 % Table des matières
 \begin{frame}{Plan du cours}

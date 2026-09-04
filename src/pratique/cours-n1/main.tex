@@ -18,12 +18,16 @@
 \usepackage{hyperref}
 
 % =======================
-% Couleurs FFESSM (reprises de src/theorie/cours-n1/main.tex)
+% Couleurs — mêmes teintes que le thème beamer "Underwater"
+% (resources/templates/diving-beamer-template), recopiées ici à la main :
+% ce document est en classe article, le thème beamer (.sty) ne s'y
+% applique pas. Si un jour un style dédié est fait pour les documents
+% pratiques, ces \definecolor pourront être remplacés par un \usepackage.
 % =======================
-\definecolor{ffessmblue}{RGB}{0,70,140}
-\definecolor{ffessmlight}{RGB}{220,235,247}
-\definecolor{ffessmred}{RGB}{190,30,45}
-\definecolor{ffessmdarkblue}{RGB}{0,55,110}
+\definecolor{ffessmblue}{RGB}{49,149,163}   % = uwAccent (teal CST)
+\definecolor{ffessmlight}{RGB}{225,241,242} % teinte claire dérivée de uwAccent
+\definecolor{ffessmred}{RGB}{190,0,39}      % = uwAccentRed (rouge FFESSM)
+\definecolor{ffessmdarkblue}{RGB}{11,38,66} % = uwBg (bleu profond FFESSM)
 
 \hypersetup{
   colorlinks=true,

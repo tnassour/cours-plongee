@@ -19,11 +19,11 @@
 \ffessmlogo{images/logo_ffessm}
 \clublogo{images/logo_cst}
 
-% Couleur FFESSM conservée : utilisée en emphase inline dans le contenu
-% des slides (\textcolor{ffessmred}{...}).
-\definecolor{ffessmred}{RGB}{190,30,45}
+% Palette FFESSM partagée (emphase inline dans le contenu des slides,
+% ex: \textcolor{ffessmred}{...})
+\input{colors}
 
-% --- Palette sémantique (diagramme tikz "Réglementation") ---
+% --- Palette sémantique (diagramme tikz "Réglementation", propre à N3) ---
 % Fond des boîtes supérieures (Causes/Infractions)
 \definecolor{FillCause}{RGB}{250, 215, 200}
 % Fond des boîtes centrales (Types de responsabilité)
@@ -61,10 +61,8 @@
 
 \begin{document}
 
-% Page de titre
-\begin{frame}[plain]
-  \titlepage
-\end{frame}
+% Page de titre (snippet partagé par tous les cours théoriques)
+\input{title-frame}
 
 % Table des matières
 {
