@@ -1,0 +1,3 @@
+[submodule "resources/templates/diving-beamer-template"]
+	path = resources/templates/diving-beamer-template
+	url = git@github.com:tnassour/diving-beamer-template.git

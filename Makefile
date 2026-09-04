@@ -8,9 +8,10 @@ TYPE ?= theorie
 # sous-répertoire de build dans lequel pdflatex est invoqué.
 ROOT_DIR := $(CURDIR)
 
-# Dossier des thèmes/styles partagés (ex: beamerthemeUnderwater.sty),
-# ajouté à TEXINPUTS pour que tous les beamers puissent le trouver.
-export TEXINPUTS := $(ROOT_DIR)/resources/templates:
+# Dossier des thèmes/styles partagés (sous-module git resources/templates/
+# diving-beamer-template, ex: beamerthemeUnderwater.sty), ajouté à TEXINPUTS
+# pour que tous les beamers puissent le trouver.
+export TEXINPUTS := .:$(ROOT_DIR)/resources/templates/diving-beamer-template/src:
 
 all-theorie: n1 n2 n3
 
