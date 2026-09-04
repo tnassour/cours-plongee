@@ -1,0 +1,128 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[a4paper,margin=2cm,headheight=46pt]{geometry}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{pdflscape}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+% =======================
+% Couleurs FFESSM (reprises de src/theorie/cours-n1/main.tex)
+% =======================
+\definecolor{ffessmblue}{RGB}{0,70,140}
+\definecolor{ffessmlight}{RGB}{220,235,247}
+\definecolor{ffessmred}{RGB}{190,30,45}
+\definecolor{ffessmdarkblue}{RGB}{0,55,110}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=ffessmblue,
+  citecolor=ffessmblue,
+  urlcolor=ffessmblue,
+  pdftitle={Programme de formation pratique -- Plongeur Niveau 1 (PE20)},
+  pdfauthor={Théo NASSOUR}
+}
+
+% =======================
+% Titres de section colorés
+% =======================
+\titleformat{\section}
+  {\normalfont\Large\bfseries\color{ffessmblue}}
+  {\thesection}{0.6em}{}[{\color{ffessmblue}\titlerule[1pt]}]
+\titleformat{\subsection}
+  {\normalfont\large\bfseries\color{ffessmdarkblue}}
+  {\thesubsection}{0.6em}{}
+\titleformat{\subsubsection}
+  {\normalfont\normalsize\bfseries\color{ffessmred}}
+  {\thesubsubsection}{0.6em}{}
+
+% =======================
+% En-tête / pied de page
+% =======================
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.6pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{ffessmblue}\leaders\hrule height \headrulewidth\hfill}}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhead[L]{\includegraphics[height=1.1cm]{images/logo_cst}}
+\fancyhead[R]{\includegraphics[height=1.1cm]{images/logo_ffessm}}
+\fancyfoot[L]{\small\color{ffessmdarkblue}Théo NASSOUR --- Programme pratique N1}
+\fancyfoot[R]{\small\color{ffessmdarkblue}\thepage / \pageref{LastPage}}
+\usepackage{lastpage}
+
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0pt}
+  \fancyfoot[L]{\small\color{ffessmdarkblue}Théo NASSOUR --- Programme pratique N1}
+  \fancyfoot[R]{\small\color{ffessmdarkblue}\thepage / \pageref{LastPage}}
+}
+
+\setlength{\parskip}{4pt}
+\setlength{\parindent}{0pt}
+
+\title{Programme de Formation Pratique}
+\author{Théo NASSOUR}
+\date{\today}
+
+\begin{document}
+
+% =======================
+% Page de garde
+% =======================
+\begin{titlepage}
+  \centering
+  \vspace*{1cm}
+  \includegraphics[height=2.2cm]{images/logo_ffessm}\hspace{1.5cm}%
+  \includegraphics[height=2.2cm]{images/logo_cst}
+
+  \vspace{2.5cm}
+  {\color{ffessmblue}\rule{0.6\textwidth}{1.2pt}}
+
+  \vspace{0.8cm}
+  {\Huge\bfseries\color{ffessmblue} Programme de Formation Pratique}
+
+  \vspace{0.6cm}
+  {\LARGE\color{ffessmred}\bfseries Plongeur Niveau 1 --- PE20}
+
+  \vspace{0.4cm}
+  {\Large\color{ffessmdarkblue} Organisation sur 3 mois --- 1 séance hebdomadaire}
+
+  \vspace{0.8cm}
+  {\color{ffessmblue}\rule{0.6\textwidth}{1.2pt}}
+
+  \vfill
+
+  {\large\bfseries Théo NASSOUR}\\
+  \vspace{0.2cm}
+  {\large Stagiaire MF1}\\
+  \vspace{0.4cm}
+  {\large CST --- Club Subaquatique Thiernois}
+
+  \vspace{1.5cm}
+  {\large\today}
+
+  \vspace{1cm}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+% =======================
+% Contenu
+% =======================
+\input{sections/introduction}
+\input{sections/planning}
+\input{sections/fiche-evaluation}
+
+\end{document}
