@@ -29,13 +29,8 @@
 \setlength{\parskip}{4pt}
 
 % Pour afficher la table des matières à chaque début de section
-\AtBeginSection[]
-{
-  \begin{frame}
-    \frametitle{Table of Contents}
-    \tableofcontents[currentsection]
-  \end{frame}
-}
+% (snippet partagé par tous les cours théoriques)
+\input{section-toc}
 
 \begin{document}
 

@@ -1,0 +1,10 @@
+% Rappel du plan (section courante) affiché automatiquement à chaque
+% nouvelle section. Partagé par tous les cours théoriques (n1/n2/n3) —
+% convention de structure de document, indépendante du thème visuel.
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table des matières}
+    \tableofcontents[currentsection]
+  \end{frame}
+}

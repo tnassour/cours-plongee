@@ -12,76 +12,28 @@
 \usetikzlibrary{shapes, arrows.meta, positioning, fit, backgrounds, calc, decorations.pathmorphing, shapes.geometric, shapes.multipart}
 
 % =======================
-% Thème FFESSM "perso"
+% Thème "Underwater" (resources/templates/beamerthemeUnderwater.sty)
 % =======================
-\usetheme{Madrid}
-\usecolortheme{whale}
+\usepackage[showclublogo, transparentlogo]{beamerthemeUnderwater}
 
-% Couleurs type FFESSM
-\definecolor{ffessmblue}{RGB}{0,70,140}
-\definecolor{ffessmlight}{RGB}{220,235,247}
+\ffessmlogo{images/logo_ffessm}
+\clublogo{images/logo_cst}
+
+% Couleur FFESSM conservée : utilisée en emphase inline dans le contenu
+% des slides (\textcolor{ffessmred}{...}).
 \definecolor{ffessmred}{RGB}{190,30,45}
-\definecolor{ffessmdarkblue}{RGB}{0,55,110}
 
-\setbeamercolor{structure}{fg=ffessmblue}
-\setbeamercolor{title}{fg=white,bg=ffessmblue}
-\setbeamercolor{frametitle}{fg=white,bg=ffessmblue}
-\setbeamercolor{block title}{bg=ffessmblue,fg=white}
-\setbeamercolor{block body}{bg=ffessmlight,fg=black}
-\setbeamercolor{section in head/foot}{bg=ffessmdarkblue,fg=white}
-\setbeamercolor{author in head/foot}{bg=ffessmdarkblue,fg=white}
-
-\setbeamertemplate{navigation symbols}{}
-
-% --- Définition des couleurs (Palette Sémantique) ---
+% --- Palette sémantique (diagramme tikz "Réglementation") ---
 % Fond des boîtes supérieures (Causes/Infractions)
-\definecolor{FillCause}{RGB}{250, 215, 200} 
+\definecolor{FillCause}{RGB}{250, 215, 200}
 % Fond des boîtes centrales (Types de responsabilité)
-\definecolor{FillConcept}{RGB}{0, 145, 200} 
+\definecolor{FillConcept}{RGB}{0, 145, 200}
 % Couleur principale (Texte, Bordures, Flèches)
-\definecolor{PrimaryColor}{RGB}{0, 50, 120}  
+\definecolor{PrimaryColor}{RGB}{0, 50, 120}
 % Arrière-plan général du diagramme
-\definecolor{CanvasBg}{RGB}{235, 240, 235}    
+\definecolor{CanvasBg}{RGB}{235, 240, 235}
 % Couleur d'alerte/emphase
 \definecolor{AlertColor}{RGB}{220, 20, 60}
-
-% =======================
-% Header with CST logo
-% =======================
-% Put CST logo inside the existing title bar (frametitle)
-% --- FrameTitle: title left, CST logo hard-right
-\setbeamertemplate{frametitle}{
-  \nointerlineskip
-  \begin{beamercolorbox}[wd=\paperwidth,ht=3ex,dp=1.2ex]{frametitle}
-    \begin{minipage}[c]{0.90\paperwidth}
-      \hspace{0.4cm}\insertframetitle
-    \end{minipage}%
-    \begin{minipage}[c]{0.10\paperwidth}
-      \raggedleft
-      \includegraphics[height=2.5ex]{images/logo_cst}\hspace{0.4cm}
-    \end{minipage}
-  \end{beamercolorbox}
-}
-
-% Bandeau section (en haut) sur toutes les pages
-\setbeamertemplate{headline}{
-  \begin{beamercolorbox}[wd=\paperwidth,ht=3.2ex,dp=1ex,left]{section in head/foot}
-    \hspace{0.5cm}\scriptsize\bfseries \insertsectionhead
-  \end{beamercolorbox}
-}
-
-% Pied de page personnalisé
-\setbeamertemplate{footline}{%
-  \leavevmode%
-  \hbox{%
-    \begin{beamercolorbox}[wd=.70\paperwidth,ht=2.5ex,dp=1.25ex,left]{author in head/foot}%
-      \hspace*{1em}\insertshortauthor{} — \insertshorttitle{}
-    \end{beamercolorbox}%
-    \begin{beamercolorbox}[wd=.30\paperwidth,ht=2.5ex,dp=1.25ex,center]{date in head/foot}%
-      \insertframenumber{} / \inserttotalframenumber
-    \end{beamercolorbox}%
-  }%
-}
 
 % =======================
 % Infos titre
@@ -90,17 +42,6 @@
 \author[Théo NASSOUR]{Théo NASSOUR\\\small Stagiaire MF1}
 \institute[CST]{CST — Club Subaquatique Thiernois}
 \date[]{\today}
-
-% Configuration de l'affichage
-\setbeamertemplate{navigation symbols}{}
-\setbeamertemplate{items}[circle]
-
-
-% Logos sur la page de titre
-\titlegraphic{%
-  \includegraphics[height=1.4cm]{images/logo_cst}\hfill
-  \includegraphics[height=2cm]{images/logo_ffessm}
-}
 
 % Pour avoir un peu plus d'espace
 \setlength{\parskip}{4pt}
@@ -115,32 +56,18 @@
 }
 
 % Pour afficher la table des matières à chaque début de section
-\AtBeginSection[]
-{
-  {
-    \setbeamertemplate{headline}{}
-    \begin{frame}
-      \frametitle{Table des matières}
-      \tableofcontents[currentsection]
-    \end{frame}
-  }
-}
+% (snippet partagé par tous les cours théoriques)
+\input{section-toc}
 
 \begin{document}
 
 % Page de titre
-{
-  \setbeamertemplate{headline}{}
-  \setbeamertemplate{footline}{}
-  \begin{frame}
-    \titlepage
-  \end{frame}
-}
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
 
 % Table des matières
 {
-  \setbeamertemplate{headline}{}
-  \setbeamertemplate{footline}{}
   \setbeamertemplate{frametitle continuation}{}
   \begin{frame}[allowframebreaks]{Plan du cours}
     \textbf{1ère Partie}
