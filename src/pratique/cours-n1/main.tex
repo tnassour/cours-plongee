@@ -4,7 +4,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
-\usepackage[a4paper,margin=2cm,headheight=46pt]{geometry}
+\usepackage[a4paper,left=2cm,right=2cm,bottom=2cm,top=0.5cm,headheight=1.2cm,includehead,headsep=0.8cm]{geometry}
 \usepackage{graphicx}
 \usepackage[table]{xcolor}
 \usepackage{array}
@@ -75,6 +75,30 @@
 \setlength{\parskip}{4pt}
 \setlength{\parindent}{0pt}
 
+% =======================
+% Saut vers une page impaire
+% =======================
+% Le document est en oneside : \cleardoublepage n'y insère jamais de page
+% blanche (il se comporte comme \clearpage). Cette macro force malgré tout le
+% contenu suivant à démarrer sur une page impaire, en insérant si besoin une
+% page blanche portant la mention "Page laissée intentionnellement blanche".
+\newcommand{\cleartooddpage}{%
+  \clearpage
+  % \value{page} ici est le numéro de la page qui vient d'être terminée (le
+  % compteur n'est incrémenté qu'au \shipout suivant), pas celui de la
+  % nouvelle page qui s'ouvre : si cette page terminée est impaire, la
+  % nouvelle page serait donc paire, d'où l'insertion d'une page blanche.
+  \ifodd\value{page}
+    \null
+    \vfill
+    \begin{center}
+      \itshape\color{gray!70!black} Page laissée intentionnellement blanche.
+    \end{center}
+    \vfill
+    \newpage
+  \fi
+}
+
 \title{Programme de Formation Pratique}
 \author{Théo NASSOUR}
 \date{\today}
@@ -126,7 +150,10 @@
 % Contenu
 % =======================
 \input{sections/introduction}
+\newpage
 \input{sections/planning}
 \input{sections/fiche-evaluation}
+\newpage
+\input{sections/vigilance}
 
 \end{document}
