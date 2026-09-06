@@ -16,6 +16,7 @@
 \usepackage{fancyhdr}
 \usepackage{enumitem}
 \usepackage{hyperref}
+\usepackage{needspace}
 
 % =======================
 % Couleurs — mêmes teintes que le thème beamer "Underwater"
@@ -74,6 +75,21 @@
 
 \setlength{\parskip}{4pt}
 \setlength{\parindent}{0pt}
+
+% =======================
+% Bloc insécable (une séance ne doit jamais être coupée entre deux pages)
+% =======================
+% Mesure la hauteur réelle du contenu dans une boîte (sans l'afficher), réserve
+% exactement cette place avec \needspace (saut de page avant le bloc si la
+% place manque), puis affiche le contenu normalement (\unvbox : pas de second
+% passage de composition, pas d'effet de bord sur l'espacement contrairement
+% à minipage).
+\newbox\ublockbox
+\newcommand{\unbreakableblock}[1]{%
+  \setbox\ublockbox=\vbox{#1}%
+  \needspace{\dimexpr\ht\ublockbox+\dp\ublockbox\relax}%
+  \unvbox\ublockbox
+}
 
 % =======================
 % Saut vers une page impaire
